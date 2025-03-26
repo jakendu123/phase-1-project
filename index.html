@@ -12,10 +12,16 @@
   <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
       <h1 class="fw-bold">GLOBEN AID</h1>
-      <form class="d-flex justify-content-end" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
-        <button class="btn btn-outline-success" type="button">Search</button>
-      </form>
+      <div class="search-container">
+       <select class="form-select">
+        <option value="" disabled selected hidden>Search...</option>
+  <option>disaster</option>
+  <option>food relief</option>
+  <option>orphanages</option>
+  
+</select> 
+          
+      </div>
     </div>
   </nav>
 
@@ -40,16 +46,18 @@
   <ul id="donorList"></ul>
 
   <footer>
-   <div class="container justify-content-end"> <div>
-      <div><a href="okothfredrick@gmail.com" class="colour-white">contact</a>
-      <p>0706941673</p>
+    <div class="container justify-content-end d-flex">
+      <div class="d-flex">
+        <div class="d-flex"><a href="mailto:okothfredrick@gmail.com" class="colour-white">Contact</a>
+          <p>0706941673</p>
+        </div>
+        <div>
+          <div><a href="mailto:okothfredrick@gmail.com" class="colour-white">Contact</a>
+            <p>0706941673</p>
+          </div>
+        </div>
       </div>
-    <div>
-      <div><a href="okothfredrick@gmail.com" class="colour-white">contact</a>
-      <p>0706941673</p>
-      </div>
-    </div></div>
-  </div>
+    </div>
     <div>
       <h1>About Us</h1>
       <p>We make global fundraising simpler, faster, and secure.</p>
@@ -58,6 +66,5 @@
   </footer>
 
   <script src="index.js"></script>
-</body>
 
 </html>

@@ -2,13 +2,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const donationForm = document.getElementById("donationForm");
   const donorList = document.getElementById("donorList");
   const totalDisplay = document.getElementById("total");
+  const searchInput = document.getElementById("searchInput");
+  const searchButton = document.getElementById("searchButton");
+  const categoryDropdown = document.getElementById("categoryDropdown");
+  let selectedCategory = "";
   let totalAmount = 0;
 
   donationForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
-    const amount = parseFloat(document.getElementById("amount").value);
+    const amount = Number(document.getElementById("amount").value);
 
     if (name === "" || isNaN(amount) || amount <= 0) {
       alert("Please enter a valid name and donation amount.");
@@ -22,20 +26,50 @@ document.addEventListener("DOMContentLoaded", function () {
     listItem.textContent = `${name} donated KES: ${amount.toFixed(2)}`;
     donorList.appendChild(listItem);
 
+    alert(
+      `${name}, you have donated KES: ${amount.toFixed(
+        2
+      )} for the category: ${selectedCategory}`
+    );
+
     donationForm.reset();
   });
-});
 
-// function performSearch() {
-//   const query = document.getElementById("searchInput").value.trim();
-//   if (query !== "") {
-//     alert(
-//       `Search functionality is not implemented. You searched for: "${query}"`
-//     );
+  searchButton.addEventListener("click", function () {
+    categoryDropdown.style.display =
+      categoryDropdown.style.display === "block" ? "none" : "block";
+  });
+
+  const dropdownItems =
+    categoryDropdown.getElementsByClassName("dropdown-item");
+  for (let item of dropdownItems) {
+    item.addEventListener("click", function () {
+      selectedCategory = this.getAttribute("data-value");
+      searchInput.placeholder = `Search in ${selectedCategory}`;
+      categoryDropdown.style.display = "none";
+    });
+  }
+
+//   searchButton.addEventListener("click", performSearch);
+
+//    function performSearch() {
+//     const query = searchInput.value.trim();
+
+//     if (query !== "") {
+//       alert(
+//         `Search functionality is not implemented. You searched for: "${query}" in category: "${selectedCategory}"`
+//       );
+//     } else {
+//       alert("Please enter a search query.");
+//     }
 //   }
-// }
 
-// function startNewFundraiser() {
-//   alert("Start A New Fundraiser functionality is not implemented.");
+  const newFundraiserButton = document.querySelector(
+    "button[type='button']:nth-of-type(2)"
+  );
+  newFundraiserButton.addEventListener("click", startNewFundraiser);
 
-// }
+  function startNewFundraiser() {
+    alert("Start A New Fundraiser functionality is not implemented.");
+  }
+});
