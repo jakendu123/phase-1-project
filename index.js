@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.getElementById("searchInput");
   const searchButton = document.getElementById("searchButton");
   const categoryDropdown = document.getElementById("categoryDropdown");
-  let selectedCategory = "";
+ // let selectedCategory = "";
   let totalAmount = 0;
 
   donationForm.addEventListener("submit", function (event) {
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const name = document.getElementById("name").value.trim();
     const amount = Number(document.getElementById("amount").value);
-
+    const selectedCategory = document.getElementById("category").value;
     if (name === "" || isNaN(amount) || amount <= 0) {
       alert("Please enter a valid name and donation amount.");
       return;
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
       )} for the category: ${selectedCategory}`
     );
 
-    donationForm.reset();
+    event.target.reset();
   });
 
   searchButton.addEventListener("click", function () {
@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
   newFundraiserButton.addEventListener("click", startNewFundraiser);
 
   function startNewFundraiser() {
+     document.querySelector(".total").innerHTML = " "
     alert("Start A New Fundraiser functionality is not implemented.");
   }
 });

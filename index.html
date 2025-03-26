@@ -13,11 +13,15 @@
     <div class="container-fluid">
       <h1 class="fw-bold">GLOBEN AID</h1>
       <div class="search-container">
-       <select class="form-select">
+       <select id= "category" class="form-select">
         <option value="" disabled selected hidden>Search...</option>
-  <option>disaster</option>
-  <option>food relief</option>
-  <option>orphanages</option>
+  <optgroup class="fw-bold text" label= "Disaster">
+    <option value="floods">floods</option>
+    <option value="famine">famine</option>
+    <option value="drought">drought</option>
+  </optgroup>
+  <option>Food relief</option>
+  <option>Orphanages</option>
   
 </select> 
           
@@ -39,22 +43,23 @@
     <div><button type="submit">Send</button></div>
     <div><button type="button">Start A New Fundraiser</button></div>
 
-    <label for="total">Total Amount Contributed:</label>
+    <div class="total"><label>Total Amount Contributed:</label>      
     <p id="total">KES: 0</p>
+    </div>
   </form>
 
   <ul id="donorList"></ul>
 
   <footer>
     <div class="container justify-content-end d-flex">
-      <div class="d-flex">
-        <div class="d-flex"><a href="mailto:okothfredrick@gmail.com" class="colour-white">Contact</a>
+      <div class="container">
+        <div class="d-flex">
+<p>Contact</p>
           <p>0706941673</p>
+          <a href="okothfredrick@gmail.com" class="colour-white">okothfredrick@gmail.com</a>
         </div>
         <div>
-          <div><a href="mailto:okothfredrick@gmail.com" class="colour-white">Contact</a>
-            <p>0706941673</p>
-          </div>
+          
         </div>
       </div>
     </div>
