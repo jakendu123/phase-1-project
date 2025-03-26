@@ -4,71 +4,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="index.css" rel="stylesheet" />
+  <link href="./css/styles.css" rel="stylesheet" />
   <title>Globen Aid</title>
-
 </head>
-<h1>GLOBEN AID</h1>
 
 <body>
-  <h2>Donate Here</h2>
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <h1 class="fw-bold">GLOBEN AID</h1>
+      <form class="d-flex justify-content-end" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+        <button class="btn btn-outline-success" type="button">Search</button>
+      </form>
+    </div>
+  </nav>
 
-  <form>
-    <label for="fname">Name:</label><br>
-    <input type="text" id="name" name="name" value=""><br>
-
-    <label for="lname">Amount:</label><br>
-    <input type="numer" id="amount" name="Amount" value=""><br><br>
-
-    <button type="button" onclick="handleContribution()">Send</button><br>
-    <button type="button" onclick="()">Start A New Fundraiser</button><br>
-    <label for="iname">Total Amount Contributed:</label><br>
-    <p id="total">KES: </p>
-  </form>
-  <ul id="list">
-    <li></li>
-  </ul>
   <div>
-    <h1>About Us</h1>
-    <p>We make global fundraising simpler,faster and secure</p>
-    <p>Globen Aid is a global fuundraising Platform with the least interest rates.</p>
+    <h2>Donate Here</h2>
   </div>
-  <div class="row">
-    <div class="column">
-      <div class="card"></div>
-      <style>
-      </style>
-      <div>
+
+  <form id="donationForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="amount">Amount:</label><br>
+    <input type="number" id="amount" name="amount" required><br><br>
+
+    <div><button type="submit">Send</button></div>
+    <div><button type="button">Start A New Fundraiser</button></div>
+
+    <label for="total">Total Amount Contributed:</label>
+    <p id="total">KES: 0</p>
+  </form>
+
+  <ul id="donorList"></ul>
+
+  <footer>
+   <div class="container justify-content-end"> <div>
+      <div><a href="okothfredrick@gmail.com" class="colour-white">contact</a>
+      <p>0706941673</p>
       </div>
-      <h2a>Athenassio Aluko</h2a>
-      <p class="title">CEO & Founder</p>
-      <p>aluko@globenarena.com</p>
-      <p><button class="button">Contact</button></p>
-    </div>
-  </div>
-  </div>
-  <div class="row">
-    <div class="column">
-      <div class="container">
-        <h2>Ola Aina</h2>
-        <p class="title">Lead Help Desk</p>
-        <p>ailaona@globenarena.com</p>
-        <p><button class="button">Contact</button></p>
+    <div>
+      <div><a href="okothfredrick@gmail.com" class="colour-white">contact</a>
+      <p>0706941673</p>
       </div>
+    </div></div>
+  </div>
+    <div>
+      <h1>About Us</h1>
+      <p>We make global fundraising simpler, faster, and secure.</p>
+      <p>Globen Aid is a global fundraising platform with the least interest rates.</p>
     </div>
-  </div>
-  <div class="row1">
-    <div class="column1">
-      <div class="container1">
-        <h2>Taranda Green</h2>
-        <p class="title">Managing Director</p>
-        <p>taranda@globenarena.com</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-  </div>
+  </footer>
+
+  <script src="index.js"></script>
 </body>
-<script src="index.js"></script>
 
 </html>
