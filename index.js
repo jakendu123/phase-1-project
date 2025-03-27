@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded",async  () {
   const donationForm = document.getElementById("donationForm");
   const donorList = document.getElementById("donorList");
   const totalDisplay = document.getElementById("total");
@@ -7,10 +7,36 @@ document.addEventListener("DOMContentLoaded", function () {
   const categoryDropdown = document.getElementById("categoryDropdown");
  // let selectedCategory = "";
   let totalAmount = 0;
+  
+  const donations = await fetchDonations();
+
+function fetchDonations() {
+  return fetch("http://localhost:3000/donations", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => data);
+}
+document.querySelectorAll(".give").forEach((btn) => {
+      btn.addEventListener("click", startNewFundraiser);
+    });
 
   donationForm.addEventListener("submit", function (event) {
     event.preventDefault();
-
+    function renderDonations(donations) {
+      const donorList = document.getElementById("donorList");
+      donorList.innerHTML = ""; // Clear existing content
+  
+      donations.forEach((donation) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${donation.name}: $${donation.amount}`;
+        donorList.appendChild(listItem);
+      });
+    }
+    
     const name = document.getElementById("name").value.trim();
     const amount = Number(document.getElementById("amount").value);
     const selectedCategory = document.getElementById("category").value;

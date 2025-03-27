@@ -1,0 +1,17 @@
+{
+  "donations": [
+    {
+      "id": 1,
+      "name": "Fredrick Okoth",
+      "amount": 1000,
+      "category": "floods"
+    },
+    {
+      "id": 2,
+      "name": "Evans Otieno",
+      "amount": 500,
+      "category": "famine"
+    }
+  ],
+  "totalAmount": 1500
+}
