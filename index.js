@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   async function fetchDonations() {
     try {
-      const response = await fetch("http://localhost:3000/donations", {
+      const response = await fetch("https://my-json-server.typicode.com/jakendu123/phase-1-project/", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
   function listDonation(donation) {
-  fetch("http://localhost:3000/donations", {
+  fetch("https://my-json-server.typicode.com/jakendu123/phase-1-project/", {
     method: "POST",
     headers: {
       Accept: "application/json",
