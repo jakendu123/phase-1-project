@@ -1,13 +1,12 @@
-@import url("css/bootstrap.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css");
 
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: darkblue;
   line-height: 1.6;
-  margin: 0%;
+  margin: 0;
   text-align: center;
   font-size: larger;
-  /* background-image: url("/assets/bg\ image.jpg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,25 +14,28 @@ body {
 }
 
 * {
-  margin: 0%;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-user agent stylesheet body {
-  display: block;
-  margin: 8px;
-}
+
 footer {
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   background-color: rgb(2, 0, 128);
-  color: rgb(255, 255, 255);
+  color: white;
   text-align: center;
-  padding: 5px;
-  position: fixed;
+  padding: 5px 0;  /* Reduce padding for a smaller height */
+  font-size: 14px;  /* Reduce font size for compact design */
 }
+
+}
+
 a {
   color: white;
+  text-decoration: none;
 }
 
 .navbar {
@@ -41,33 +43,53 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
 }
 
 .search-container {
   display: flex;
   align-items: center;
-  position: relative; 
+  position: relative;
 }
 
-.dropdown {
-  display: none; 
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  z-index: 1;
+.card-container {
+  display: flex;
+  flex-wrap: nowrap; 
+  overflow-x: auto; 
+  gap: 10px;
+  padding: 10px;
+  justify-content: flex-start;
+   margin-bottom: 60px;
 }
 
-.dropdown-item {
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background-color: #f1f1f1;
-}
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 90px;
+  height: 230px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  border-radius: 5px; 
+  border-radius: 5px;
+  padding: 15px;
+  background-color: white;
+  flex-shrink: 0; 
+}
+
+.card button {
+  margin-top: auto;
+}
+
+.container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

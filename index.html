@@ -4,95 +4,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./css/styles.css" rel="stylesheet" />
+  <link href="./css/styles.css" rel="stylesheet" /><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <title>Globen Aid</title>
 </head>
-
 <body>
-  <nav class="navbar bg-body-tertiary">
+    <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
       <h1 class="fw-bold">GLOBEN AID</h1>
       <div class="search-container">
-       <select id= "category" class="form-select">
+       <select id="category" class="form-select">
         <option value="" disabled selected hidden>Search...</option>
-  <optgroup class="fw-bold text" label= "Disaster">
-    <option value="floods">floods</option>
-    <option value="famine">famine</option>
-    <option value="drought">drought</option>
-  </optgroup>
-  <option>Food relief</option>
-  <option>Orphanages</option>
-  
-</select> 
-          
+        <optgroup class="fw-bold text" label="Disaster">
+          <option value="floods">floods</option>
+          <option value="famine">famine</option>
+          <option value="drought">drought</option>
+        </optgroup>
+        <option>Food relief</option>
+        <option>Orphanages</option>
+      </select> 
       </div>
     </div>
   </nav>
 
-  <div>
-    <h2>Donate Here</h2>
-  </div>
+  
+ 
 
-  <form id="donationForm">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" required><br>
-
-    <label for="amount">Amount:</label><br>
-    <input type="number" id="amount" name="amount" required><br><br>
-
-    <div><button type="submit">Send</button></div>
-    <div><button type="button">Start A New Fundraiser</button></div>
-
-    <div class="total"><label>Total Amount Contributed:</label>      
-    <p id="total">KES: 0</p>
-    </div>
-  </form>
-
-  <ul id="donorList"></ul>
-
-  <div class="container d-flex flex-wrap  justify-content-between gap-3 p-3">
-    <div class="card p-3" style="width: 250px;">
+  <div class="container d-flex flex-wrap gap-3 p-2 mb-4" id="fundraiserContainer">
+    <div class="card p-3" style="width: 200px;">
         <h4><b>Hunger in N.E Kenya</b></h4>
         <p>Donations for food supplies</p>
-        <button class="btn btn-danger">Donate</button>
+        <button class="btn btn-danger donate">Donate</button>
     </div>
-    <div class="card p-3" style="width: 250px;">
+    <div class="card p-3" style="width: 200px;">
         <h4><b>Floods in Kisumu</b></h4>
         <p>Donations for food supplies</p>
-        <button class="btn btn-danger">Donate</button>
+        <button class="btn btn-danger donate">Donate</button>
     </div>
-    <div class="card p-3" style="width: 250px;">
+    <div class="card p-3" style="width: 200px;">
         <h4><b>Red Cross</b></h4>
         <p>Donations for emergency services</p>
-        <button class="btn btn-danger">Donate</button>
+        <button class="btn btn-danger donate">Donate</button>
     </div>
-    <div class="card p-3" style="width: 250px;">
+    <div class="card p-3" style="width: 200px;">
         <h4><b>Orphanages</b></h4>
         <p>Donations for supplies</p>
-        <button class="btn btn-danger">Donate</button>
+        <button class="btn btn-danger donate">Donate</button>
     </div>
-</div>
+  </div>
 
-  <footer>
-    <div class="container justify-content-end d-flex">
-      <div class="container">
-        <div class="d-flex">
-<p>Contact</p>
-          <p>0706941673</p>
-          <a href="okothfredrick@gmail.com" class="colour-white">okothfredrick@gmail.com</a>
-        </div>
-        <div>
-          
-        </div>
-      </div>
-    </div>
-    <div>
-      <h1>About Us</h1>
-      <p>We make global fundraising simpler, faster, and secure.</p>
-      <p>Globen Aid is a global fundraising platform with the least interest rates.</p>
-    </div>
-  </footer>
+ <h2 class="text-center">Donate Here</h2>
+  <!-- donation section  -->
+  <div id="showDonationPart" class="container d-flex justify-content-center align-items-center">
+        <form id="donationForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
 
+        <label for="amount">Amount:</label><br>
+        <input type="number" id="amount" name="amount" required><br><br>
+
+        <div><button type="submit" class = "mx-5 my-3 btn btn-primary">Send</button></div>
+        <div><button type="button" id="newFundraiser" class="btn btn-success mb-3">Start A New Fundraiser</button></div>
+ <ul id="donorList"></ul>
+        <div class="total">
+            <label>Total Amount Contributed:</label>      
+            <p id="total">KES: 0</p>
+        </div>
+    </form>
+
+  </div>
+
+  <footer class="my-10">
+  <div class="footer-container">
+    <div class="contact-info">
+      <p>Contact</p>
+      <p>0706941673</p>
+      <a href="mailto:okothfredrick@gmail.com" class="email-link">okothfredrick@gmail.com</a>
+    </div>
+  </div>
+  
+  <div class="about-us">
+    <h1>About Us</h1>
+    <p>We make global fundraising simpler, faster, and secure.</p>
+    <p>Globen Aid is a global fundraising platform with the least interest rates.</p>
+  </div>
+</footer>
+
+  
   <script src="index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
