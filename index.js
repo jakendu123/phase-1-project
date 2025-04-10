@@ -2,61 +2,37 @@ document.addEventListener("DOMContentLoaded", async function () {
   const donationForm = document.getElementById("donationForm");
   const donorList = document.getElementById("donorList");
   const totalDisplay = document.getElementById("total");
-  const searchInput = document.getElementById("searchInput");
-  const searchButton = document.getElementById("searchButton");
-  const categoryDropdown = document.getElementById("categoryDropdown");
+  const categoryDropdown = document.getElementById("category");
+  const newFundraiserButton = document.getElementById("newFundraiser");
+  const donateButtons = document.querySelectorAll(".btn-danger");
+  let selectedCause = "";
   let totalAmount = localStorage.getItem("totalAmount")
     ? parseFloat(localStorage.getItem("totalAmount"))
     : 0;
-  let selectedCause = "";
 
   function updateTotalDisplay() {
     totalDisplay.textContent = `KES: ${totalAmount.toFixed(2)}`;
   }
-
   updateTotalDisplay();
 
   async function fetchDonations() {
     try {
-      const response = await fetch("https://my-json-server.typicode.com/jakendu123/phase-1-project/", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      });
-      return await response.json();
+      const response = await fetch("http://localhost:3000/donations");
+      return response.ok ? await response.json() : [];
     } catch (error) {
       console.error("Error fetching donations:", error);
       return [];
     }
   }
-  function listDonation(donation) {
-  fetch("https://my-json-server.typicode.com/jakendu123/phase-1-project/", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-     "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          donations_id: donations.id,
-    name: donations.name,
-    amount: donations.amount,
-    category: donation.category  
-        })
-    }).then((response)=> response.json())
-    .then((data) => renderDonations(data))
-  });
-listDonation(donations)
-  const donations = await fetchDonations();
+
   function renderDonations(donations) {
     donorList.innerHTML = "";
     let calculatedTotal = 0;
 
     donations.forEach((donation) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `${donation.name}: KES ${donation.amount} for "${donation.cause}"`;
+      listItem.textContent = `${donation.name} donated KES ${donation.amount} for "${donation.cause}"`;
       donorList.appendChild(listItem);
-
       calculatedTotal += parseFloat(donation.amount);
     });
 
@@ -64,22 +40,57 @@ listDonation(donations)
     localStorage.setItem("totalAmount", totalAmount);
     updateTotalDisplay();
   }
+
+  async function listDonation(donation) {
+    try {
+      const response = await fetch("http://localhost:3000/totalAmount", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(donation),
+      });
+      if (response.ok) {
+        const newDonation = await response.json();
+        renderDonations([...donations, newDonation]);
+      }
+    } catch (error) {
+      console.error("Error saving donation:", error);
+    }
+  }
+
+  const donations = await fetchDonations();
   renderDonations(donations);
 
-  document.querySelectorAll(".btn-danger").forEach((btn) => {
-    btn.addEventListener("click", function () {
+  donateButtons.forEach((button) => {
+    button.addEventListener("click", function () {
       const card = this.closest(".card");
       selectedCause = card.querySelector("h4").textContent;
       alert(`You are donating to: ${selectedCause}`);
+      donationForm.style.display = "block"; // Show the form
     });
   });
+async function postDonation(donation) {
+  try {
+    const response = await fetch("http://localhost:3000/donations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(donation),
+    });
 
+    if (!response.ok) throw new Error("Failed to save donation");
+    const newDonation = await response.json();
+    renderDonations([...donations, newDonation]);
+  } catch (error) {
+    console.error("Error posting donation:", error);
+  }
+}
   donationForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const name = document.getElementById("name").value.trim();
     const amount = Number(document.getElementById("amount").value);
 
-    if (name === "" || isNaN(amount) || amount <= 0) {
+    if (!name || isNaN(amount) || amount <= 0) {
       alert("Please enter a valid name and donation amount.");
       return;
     }
@@ -89,66 +100,34 @@ listDonation(donations)
       return;
     }
 
+    const donation = { name, amount, category: selectedCause };
+    listDonation(donation);
+postDonation(donation);
     totalAmount += amount;
     localStorage.setItem("totalAmount", totalAmount);
     updateTotalDisplay();
 
     const listItem = document.createElement("li");
-    listItem.textContent = `${name} donated KES: ${amount.toFixed(
+    listItem.textContent = `${name} donated KES ${amount.toFixed(
       2
     )} for "${selectedCause}"`;
     donorList.appendChild(listItem);
 
     alert(
-      `${name}, you have donated KES: ${amount.toFixed(
+      `${name}, you have donated KES ${amount.toFixed(
         2
       )} for "${selectedCause}"`
     );
 
-    event.target.reset();
+    donationForm.reset();
     selectedCause = "";
   });
 
-  searchButton.addEventListener("click", function () {
-    categoryDropdown.style.display =
-      categoryDropdown.style.display === "block" ? "none" : "block";
-  });
-
-  const dropdownItems =
-    categoryDropdown.getElementsByClassName("dropdown-item");
-  for (let item of dropdownItems) {
-    item.addEventListener("click", function () {
-      selectedCategory = this.getAttribute("data-value");
-      searchInput.placeholder = `Search in ${selectedCategory}`;
-      categoryDropdown.style.display = "none";
-    });
-  }
-
-  const newFundraiserButton = document.querySelector("#newFundraiser");
-  newFundraiserButton.addEventListener("click", function (event) {
+  newFundraiserButton.addEventListener("click", function () {
     totalAmount = 0;
     localStorage.setItem("totalAmount", totalAmount);
     updateTotalDisplay();
-
     donorList.innerHTML = "";
-
     alert("Fundraiser has been reset. Start a new fundraiser now!");
-    event.target.reset(donorList);
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Get all donate buttons
-  const donateButtons = document.querySelectorAll(".btn-danger");
-  const donationForm = document.getElementById("donationForm");
-
-  // Hide the form initially
-  donationForm.style.display = "none";
-  // Add event listener to each donate button
-  donateButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      // Show the donation form when any donate button is clicked
-      donationForm.style.display = "block";
-    });
   });
 });

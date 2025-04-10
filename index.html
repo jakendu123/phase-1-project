@@ -32,21 +32,25 @@
   <div class="container d-flex flex-wrap gap-3 p-2 mb-4" id="fundraiserContainer">
     <div class="card p-3" style="width: 200px;">
         <h4><b>Hunger in N.E Kenya</b></h4>
+        <img src="assets/hunger.jpg" alt="hunger" class="img-thumbnail">
         <p>Donations for food supplies</p>
         <button class="btn btn-danger donate">Donate</button>
     </div>
     <div class="card p-3" style="width: 200px;">
         <h4><b>Floods in Kisumu</b></h4>
+        <img src="assets/floods.jpg" alt="floods" class="img-thumbnail">
         <p>Donations for food supplies</p>
         <button class="btn btn-danger donate">Donate</button>
     </div>
     <div class="card p-3" style="width: 200px;">
         <h4><b>Red Cross</b></h4>
+         <img src="assets/red-cross- kenya.jpg" alt="red-cross-kenya" class="img-thumbnail">
         <p>Donations for emergency services</p>
         <button class="btn btn-danger donate">Donate</button>
     </div>
     <div class="card p-3" style="width: 200px;">
         <h4><b>Orphanages</b></h4>
+        <img src="assets/orphanage-kenya.jpg" alt="orphanage-kenya" class="img-thumbnail">
         <p>Donations for supplies</p>
         <button class="btn btn-danger donate">Donate</button>
     </div>
@@ -54,6 +58,8 @@
 
  <h2 class="text-center">Donate Here</h2>
   <!-- donation section  -->
+   <section>
+
   <div id="showDonationPart" class="container d-flex justify-content-center align-items-center">
         <form id="donationForm">
         <label for="name">Name:</label><br>
@@ -66,28 +72,41 @@
         <div><button type="button" id="newFundraiser" class="btn btn-success mb-3">Start A New Fundraiser</button></div>
  <ul id="donorList"></ul>
         <div class="total">
-            <label>Total Amount Contributed:</label>      
+            <label class="fw-bold">Total Amount Contributed:</label>      
             <p id="total">KES: 0</p>
         </div>
     </form>
 
   </div>
+   </section>
+<section>
+   <footer class="bg-primary text-white py-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- Contact Info Section -->
+      <div class="col-md-6 text-center text-md-start mb-3">
+        <h5>Contact</h5>
+        <p>Phone: 0706941673</p>
+        <a href="mailto:okothfredrick@gmail.com" class="text-white text-decoration-none">
+          okothfredrick@gmail.com
+        </a>
+      </div>
 
-  <footer class="my-10">
-  <div class="footer-container">
-    <div class="contact-info">
-      <p>Contact</p>
-      <p>0706941673</p>
-      <a href="mailto:okothfredrick@gmail.com" class="email-link">okothfredrick@gmail.com</a>
+      <!-- About Us Section -->
+      <div class="col-md-6 text-center text-md-start">
+        <h5>About Us</h5>
+        <p>We make global fundraising simpler, faster, and secure.</p>
+        <p>Globen Aid is a global fundraising platform with the least interest rates.</p>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="text-center mt-3">
+      <p class="mb-0">&copy; 2025 Globen Aid. All Rights Reserved.</p>
     </div>
   </div>
-  
-  <div class="about-us">
-    <h1>About Us</h1>
-    <p>We make global fundraising simpler, faster, and secure.</p>
-    <p>Globen Aid is a global fundraising platform with the least interest rates.</p>
-  </div>
-</footer>
+</footer> 
+</section>
 
   
   <script src="index.js"></script>
